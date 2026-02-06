@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vijay ❤️ Srishti</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: grid;
+      place-items: center;
+      background-color: #ffebee;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 24px;
+      max-width: 520px;
+      width: 92%;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #d32f2f;
+      margin-bottom: 16px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 14px 28px;
+      font-size: 1.15rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+      min-width: 120px;
+      touch-action: manipulation;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    #yesButton {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    #noButton {
+      background-color: #f44336;
+      color: white;
+      position: relative;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      color: #b71c1c;
+      display: none;
+      background: rgba(255,255,255,0.9);
+      padding: 14px 16px;
+      border-radius: 12px;
+    }
+
+    .balloon {
+      position: absolute;
+      font-size: 2rem;
+      animation: float 6s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(40px, -40px); }
+      50% { transform: translate(-40px, 40px); }
+      75% { transform: translate(40px, 40px); }
+    }
+
+    @keyframes explode {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(3); opacity: 0; }
+    }
+
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 10px;
+      height: 10px;
+      pointer-events: none;
+      animation: confetti-fall 2s linear forwards;
+    }
+
+    @keyframes confetti-fall {
+      from { transform: translateY(-10px) rotate(0deg); }
+      to { transform: translateY(110vh) rotate(360deg); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Hi, Srishti! 💖<br>Vijay has a question for you &lt;3</h1>
+
+    <div class="buttons">
+      <button id="yesButton">Yes</button>
+      <button id="noButton">No</button>
+    </div>
+
+    <div id="message">
+      I knew you would say yes 💕<br><br>
+      Always yours,<br>
+      Made with love by<br>
+      <strong>Vijay</strong> 💖
+    </div>
+
+    <!-- Balloons -->
+    <div class="balloon" style="top: 10%; left: 15%;">🎈</div>
+    <div class="balloon" style="top: 25%; left: 75%;">🎈</div>
+    <div class="balloon" style="top: 50%; left: 40%;">🎈</div>
+    <div class="balloon" style="top: 75%; left: 10%;">🎈</div>
+    <div class="balloon" style="top: 85%; left: 65%;">🎈</div>
+  </div>
+
+  <script>
+    const noButton = document.getElementById("noButton");
+    const yesButton = document.getElementById("yesButton");
+    const message = document.getElementById("message");
+    const buttons = document.querySelector(".buttons");
+
+    function moveNoButton() {
+      const x = Math.random() * 90 - 45;
+      const y = Math.random() * 70 - 35;
+      noButton.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    // Works for mouse + touch
+    noButton.addEventListener("pointerenter", moveNoButton);
+    noButton.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      moveNoButton();
+    });
+
+    yesButton.addEventListener("click", () => {
+      message.style.display = "block";
+      buttons.style.display = "none";
+
+      document.querySelectorAll(".balloon").forEach(b => {
+        b.style.animation = "explode 1s forwards";
+      });
+
+      for (let i = 0; i < 50; i++) {
+        const c = document.createElement("div");
+        c.className = "confetti";
+        c.style.left = `${Math.random() * 100}vw`;
+        c.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        c.style.animationDelay = `${Math.random() * 0.5}s`;
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 2500);
+      }
+    });
+  </script>
+</body>
+</html>
