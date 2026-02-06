@@ -65,15 +65,20 @@
       position: relative;
     }
 
+    /* MESSAGE BOX – FIXED */
     #message {
       margin-top: 22px;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: #b71c1c;
       display: none;
       background: rgba(255,255,255,0.9);
       padding: 16px 18px;
       border-radius: 12px;
       line-height: 1.5;
+
+      /* ensures nothing is cut off */
+      max-height: 70vh;
+      overflow-y: auto;
     }
 
     /* Image shown only after YES */
@@ -137,7 +142,7 @@
       I knew you would say yes 💕<br><br>
       Happy Valentine’s Day, Srishti.<br>
       To us—today, tomorrow, and always.<br><br>
-      <strong>— Vijay</strong> 💖
+      <strong>— Vijay</strong> 💖<br><br>
     </div>
 
     <!-- Balloons -->
